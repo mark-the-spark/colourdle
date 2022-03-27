@@ -75,6 +75,14 @@ h1 {
     width: 40px;
 }
 
+.key-text {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 0px 10px;
+    margin-bottom: 20px;
+}
+
 .tile-row {
     display: flex;
 }
@@ -83,11 +91,69 @@ h1 {
     color: white;
 }
 
+
+.distance-0-letter {
+    color: #238443;
+}
+
+.distance-1-letter {
+    color: #41ab5d;
+}
+
+.distance-2-letter {
+    color: #41ab5d;
+}
+
+
+.distance-3-letter {
+    color: #addd8e;
+}
+
+.distance-4-letter {
+    color: #addd8e;
+}
+
+.distance-5-letter {
+    color: #ffeda0;
+}
+
+.distance-6-letter {
+    color: #feb24c;
+}
+
+.distance-7-letter {
+    color: #fc4e2a;
+}
+
+.distance-8-letter {
+    color: #bd0026;
+}
+
+.distance-9-letter {
+    color: #e31a1c;
+}
+
+.distance-10-letter {
+    color: #ae017e;
+}
+
+.distance-11-letter {
+    color: #ae017e;
+}
+
+.distance-12-letter {
+    color: #ae017e;
+}
+
+.distance-13-letter {
+    color: #ae017e;
+}
+
+
 .distance-0 {
     background-color: #238443;
     border: 2px solid #238443;
 }
-
 
 .distance-1 {
     background-color: #41ab5d;
@@ -95,8 +161,8 @@ h1 {
 }
 
 .distance-2 {
-    background-color: #78c679;
-    border: 2px solid #78c679;
+    background-color: #41ab5d;
+    border: 2px solid #41ab5d;
 }
 
 

@@ -23,7 +23,17 @@
                     </svg></a>
             </div>
             <a class="navbar-item" href="#">
-                <h1 class="center is-size-3 has-text-weight-bold">Colordle</h1>
+                <h1 class="center is-size-3 has-text-weight-bold">
+                    <span class="distance-12-letter">C</span>
+                    <span class="distance-1-letter">o</span>
+                    <span class="distance-4-letter">l</span>
+                    <span class="distance-10-letter">o</span>
+                    <span class="distance-3-letter">u</span>
+                    <span class="distance-7-letter">r</span>
+                    <span class="distance-2-letter">d</span>
+                    <span class="distance-9-letter">l</span>
+                    <span class="distance-6-letter">e</span>
+                    </h1>
             </a>
             <a class="navbar-item" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -48,13 +58,13 @@
                 </div>
                 <div class="key-item distance-2">
                 </div>
-                <div class="key-item distance-1">
-                </div>
                 <div class="key-item distance-0">
                 </div>
-                
             </div>
-
+            <div class="key-text">
+                <div>Cold</div>
+                <div>Warm</div>
+            </div>
             <tile-row :guess="guesses[0]" :class="wiggleRow == 0 ? 'wiggle' : '' "></tile-row>
             <tile-row :guess="guesses[1]" :class="wiggleRow == 1 ? 'wiggle' : '' "></tile-row>
             <tile-row :guess="guesses[2]" :class="wiggleRow == 2 ? 'wiggle' : '' "></tile-row>
