@@ -114,18 +114,18 @@
 
             </div>
         </div>
-        <game-modal :active="modals.successActive" @closed="modals.successActive = false">
+        <game-modal class="hidden" :active="modals.successActive" @closed="modals.successActive = false">
             <div class="box">
                 <h2>Well done! You sure know your colors.</h2>
             </div>
         </game-modal>
-        <game-modal :active="modals.helpActive" @closed="modals.helpActive = false">
+        <game-modal class="hidden" :active="modals.helpActive" @closed="modals.helpActive = false">
             <div class="box">
                 <h2>Here's how it all works</h2>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad cumque voluptatibus provident neque quisquam voluptatem eum ipsa dignissimos exercitationem. Similique quis veritatis tempore dicta deserunt porro commodi eaque animi nemo?.</p>
             </div>
         </game-modal>
-        <game-modal :active="modals.failedActive" @closed="modals.failedActive = false">
+        <game-modal class="hidden" :active="modals.failedActive" @closed="modals.failedActive = false">
             <div class="box">
                 <h2>You didn't get the word in time. Too bad.</h2>
                 <p>Try practicing a little bit more.</p>
