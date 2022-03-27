@@ -1,0 +1,212 @@
+/* Helpers */
+
+@import 'bulma/css/bulma.css';
+
+body {
+    font-family: sans-serif;
+}
+
+// Typeograpy
+
+h1,h2,h3,h4,h5,h6,p {
+    color: black;
+}
+
+h1 {
+    font-family: 'Abril Fatface', cursive;
+    letter-spacing: 1px;
+}
+
+// Navbar
+
+.navbar {
+    border-bottom: 2px solid #D3D6DA;
+    margin-bottom: 2rem;
+    display:flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar-item {
+    padding: 0.5rem 0rem;
+    line-height: 1.0;
+}
+
+// Utility
+
+.container {
+    margin: 0 auto;
+    width : 340px;
+}
+
+.center {
+    text-align: center;
+}
+
+.keyboard {
+    margin-top: 20px;
+}
+
+.tile {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #D3D6DA;
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile span {
+    font-size: 38px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.key {
+    display: flex;
+    justify-content:center;
+    margin-bottom: 10px;
+}
+
+.key .key-item {
+    height: 50px;
+    width: 40px;
+}
+
+.tile-row {
+    display: flex;
+}
+
+.has-status {
+    color: white;
+}
+
+.distance-0 {
+    background-color: #238443;
+    border: 2px solid #238443;
+}
+
+
+.distance-1 {
+    background-color: #41ab5d;
+    border: 2px solid #41ab5d;
+}
+
+.distance-2 {
+    background-color: #78c679;
+    border: 2px solid #78c679;
+}
+
+
+.distance-3 {
+    background-color: #addd8e;
+    border: 2px solid #addd8e;
+}
+
+.distance-4 {
+    background-color: #addd8e;
+    border: 2px solid #addd8e;
+}
+
+.distance-5 {
+    background-color: #ffeda0;
+    border: 2px solid #ffeda0;
+}
+
+.distance-6 {
+    background-color: #feb24c;
+    border: 2px solid #feb24c;
+}
+
+.distance-7 {
+    background-color: #fc4e2a;
+    border: 2px solid #fc4e2a;
+}
+
+.distance-8 {
+    background-color: #bd0026;
+    border: 2px solid #bd0026;
+}
+
+.distance-9 {
+    background-color: #e31a1c;
+    border: 2px solid #e31a1c;
+}
+
+.distance-10 {
+    background-color: #ae017e;
+    border: 2px solid #ae017e;
+}
+
+.distance-11 {
+    background-color: #ae017e;
+    border: 2px solid #ae017e;
+}
+
+.distance-12 {
+    background-color: #ae017e;
+    border: 2px solid #ae017e;
+}
+
+.distance-13 {
+    background-color: #ae017e;
+    border: 2px solid #ae017e;
+}
+
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+.jump {
+    animation-name: jump;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+.wiggle {
+    animation-name: wiggle;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+
+// Animations
+
+@keyframes jump {
+    0% {
+      transform: translateY(0px);
+    }
+    20% {
+      transform: translateY(5px);
+    }
+    60% {
+      transform: translateY(-25px);
+    }
+    90% {
+      transform: translateY(3px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+@keyframes wiggle {
+    0% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(-15px);
+    }
+    50% {
+        transform: translateX(15px);
+    }
+    75% {
+        transform: translateX(-15px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
