@@ -6,6 +6,10 @@ body {
     font-family: sans-serif;
 }
 
+// Variables 
+
+$header-height: 54px;
+
 // Typeograpy
 
 h1,h2,h3,h4,h5,h6,p {
@@ -25,7 +29,6 @@ h1 {
 
 .navbar {
     border-bottom: 2px solid #D3D6DA;
-    margin-bottom: 2rem;
     display:flex;
     justify-content: space-between;
     padding-left: 1rem;
@@ -42,14 +45,26 @@ h1 {
 .container {
     margin: 0 auto;
     width : 340px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - $header-height);
 }
 
 .center {
     text-align: center;
 }
 
+.game {
+    flex-grow: 1;
+    margin-top: 10px;
+}
+
 .keyboard {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 10px;
+
 }
 
 .tile {
@@ -72,11 +87,12 @@ h1 {
     display: flex;
     justify-content:center;
     margin-bottom: 10px;
+    flex: 1;
 }
 
 .key .key-item {
-    height: 50px;
-    width: 40px;
+    height: 40px;
+    width: 46px;
 }
 
 .key-text {
@@ -84,7 +100,7 @@ h1 {
     justify-content: space-between;
     font-weight: bold;
     padding: 0px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .tile-row {
@@ -97,132 +113,132 @@ h1 {
 
 
 .distance-0-letter {
-    color: #238443;
+    color: #31B60B;
 }
 
 .distance-1-letter {
-    color: #41ab5d;
+    color: #F4BE06;
 }
 
 .distance-2-letter {
-    color: #41ab5d;
+    color: #F4BE06;
 }
 
 
 .distance-3-letter {
-    color: #addd8e;
+    color: #FE8B09;
 }
 
 .distance-4-letter {
-    color: #addd8e;
+    color: #FE8B09;
 }
 
 .distance-5-letter {
-    color: #ffeda0;
+    color: #D4210F;
 }
 
 .distance-6-letter {
-    color: #feb24c;
+    color: #D4210F;
 }
 
 .distance-7-letter {
-    color: #fc4e2a;
+    color: #B732FC;
 }
 
 .distance-8-letter {
-    color: #bd0026;
+    color: #B732FC;
 }
 
 .distance-9-letter {
-    color: #e31a1c;
+    color: #3D7FF6;
 }
 
 .distance-10-letter {
-    color: #ae017e;
+    color: #3D7FF6;
 }
 
 .distance-11-letter {
-    color: #ae017e;
+    color: #000000;
 }
 
 .distance-12-letter {
-    color: #ae017e;
+    color: #000000;
 }
 
 .distance-13-letter {
-    color: #ae017e;
+    color: #000000;
 }
 
 
 .distance-0 {
-    background-color: #238443;
-    border: 2px solid #238443;
+    background-color: #31B60B;
+    border: 2px solid #31B60B;
 }
 
 .distance-1 {
-    background-color: #41ab5d;
-    border: 2px solid #41ab5d;
+    background-color: #F4BE06;
+    border: 2px solid #F4BE06;
 }
 
 .distance-2 {
-    background-color: #41ab5d;
-    border: 2px solid #41ab5d;
+    background-color: #F4BE06;
+    border: 2px solid #F4BE06;
 }
 
 
 .distance-3 {
-    background-color: #addd8e;
-    border: 2px solid #addd8e;
+    background-color: #FE8B09;
+    border: 2px solid #FE8B09;
 }
 
 .distance-4 {
-    background-color: #addd8e;
-    border: 2px solid #addd8e;
+    background-color: #FE8B09;
+    border: 2px solid #FE8B09;
 }
 
 .distance-5 {
-    background-color: #ffeda0;
-    border: 2px solid #ffeda0;
+    background-color: #D4210F;
+    border: 2px solid #D4210F;
 }
 
 .distance-6 {
-    background-color: #feb24c;
-    border: 2px solid #feb24c;
+    background-color: #D4210F;
+    border: 2px solid #D4210F;
 }
 
 .distance-7 {
-    background-color: #fc4e2a;
-    border: 2px solid #fc4e2a;
+    background-color: #B732FC;
+    border: 2px solid #B732FC;
 }
 
 .distance-8 {
-    background-color: #bd0026;
-    border: 2px solid #bd0026;
+    background-color: #B732FC;
+    border: 2px solid #B732FC;
 }
 
 .distance-9 {
-    background-color: #e31a1c;
-    border: 2px solid #e31a1c;
+    background-color: #3D7FF6;
+    border: 2px solid #3D7FF6;
 }
 
 .distance-10 {
-    background-color: #ae017e;
-    border: 2px solid #ae017e;
+    background-color: #3D7FF6;
+    border: 2px solid #3D7FF6;
 }
 
 .distance-11 {
-    background-color: #ae017e;
-    border: 2px solid #ae017e;
+    background-color: #000000;
+    border: 2px solid #000000;
 }
 
 .distance-12 {
-    background-color: #ae017e;
-    border: 2px solid #ae017e;
+    background-color: #000000;
+    border: 2px solid #000000;
 }
 
 .distance-13 {
-    background-color: #ae017e;
-    border: 2px solid #ae017e;
+    background-color: #000000;
+    border: 2px solid #000000;
 }
 
 

@@ -8,6 +8,7 @@
     <title>Colordle</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
     </style>
 </head>
 
@@ -15,8 +16,8 @@
     <div id="root">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" href="#" @click="modals.helpActive = true"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
-                        width="24">
+                <a class="navbar-item" href="#" @click="modals.helpActive = true"><svg
+                        xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                         <path fill="var(--color-tone-1)"
                             d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
                         </path>
@@ -24,7 +25,7 @@
             </div>
             <a class="navbar-item" href="#">
                 <h1 class="center is-size-3 has-text-weight-bold">
-                    <span class="distance-12-letter">C</span>
+                    <span class="distance-0-letter">C</span>
                     <span class="distance-1-letter">o</span>
                     <span class="distance-4-letter">l</span>
                     <span class="distance-10-letter">o</span>
@@ -33,7 +34,7 @@
                     <span class="distance-2-letter">d</span>
                     <span class="distance-9-letter">l</span>
                     <span class="distance-6-letter">e</span>
-                    </h1>
+                </h1>
             </a>
             <a class="navbar-item" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -43,34 +44,36 @@
             </a>
         </nav>
         <div class="container ">
-            <div class="key">
-                <div class="key-item distance-13">
+            <div class="game">
+
+                <div class="key">
+
+                    <div class="key-item distance-12">
+                    </div>
+                    <div class="key-item distance-10">
+                    </div>
+                    <div class="key-item distance-8">
+                    </div>
+                    <div class="key-item distance-6">
+                    </div>
+                    <div class="key-item distance-4">
+                    </div>
+                    <div class="key-item distance-2">
+                    </div>
+                    <div class="key-item distance-0">
+                    </div>
                 </div>
-                <div class="key-item distance-9">
+                <div class="key-text">
+                    <div>Cold</div>
+                    <div>Warm</div>
                 </div>
-                <div class="key-item distance-7">
-                </div>
-                <div class="key-item distance-6">
-                </div>
-                <div class="key-item distance-5">
-                </div>
-                <div class="key-item distance-4">
-                </div>
-                <div class="key-item distance-2">
-                </div>
-                <div class="key-item distance-0">
-                </div>
+                <tile-row :guess="guesses[0]" :class="wiggleRow == 0 ? 'wiggle' : '' "></tile-row>
+                <tile-row :guess="guesses[1]" :class="wiggleRow == 1 ? 'wiggle' : '' "></tile-row>
+                <tile-row :guess="guesses[2]" :class="wiggleRow == 2 ? 'wiggle' : '' "></tile-row>
+                <tile-row :guess="guesses[3]" :class="wiggleRow == 3 ? 'wiggle' : '' "></tile-row>
+                <tile-row :guess="guesses[4]" :class="wiggleRow == 4 ? 'wiggle' : '' "></tile-row>
+                <tile-row :guess="guesses[5]" :class="wiggleRow == 5 ? 'wiggle' : '' "></tile-row>
             </div>
-            <div class="key-text">
-                <div>Cold</div>
-                <div>Warm</div>
-            </div>
-            <tile-row :guess="guesses[0]" :class="wiggleRow == 0 ? 'wiggle' : '' "></tile-row>
-            <tile-row :guess="guesses[1]" :class="wiggleRow == 1 ? 'wiggle' : '' "></tile-row>
-            <tile-row :guess="guesses[2]" :class="wiggleRow == 2 ? 'wiggle' : '' "></tile-row>
-            <tile-row :guess="guesses[3]" :class="wiggleRow == 3 ? 'wiggle' : '' "></tile-row>
-            <tile-row :guess="guesses[4]" :class="wiggleRow == 4 ? 'wiggle' : '' "></tile-row>
-            <tile-row :guess="guesses[5]" :class="wiggleRow == 5 ? 'wiggle' : '' "></tile-row>
             <div class="keyboard">
                 <div class="row">
                     <key-button @pressed="keyWasPressed" keystroke="q" :state="letterStates.q">q</key-button>
@@ -122,7 +125,9 @@
         <game-modal class="hidden" :active="modals.helpActive" @closed="modals.helpActive = false">
             <div class="box">
                 <h2>Here's how it all works</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad cumque voluptatibus provident neque quisquam voluptatem eum ipsa dignissimos exercitationem. Similique quis veritatis tempore dicta deserunt porro commodi eaque animi nemo?.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad cumque voluptatibus provident neque
+                    quisquam voluptatem eum ipsa dignissimos exercitationem. Similique quis veritatis tempore dicta
+                    deserunt porro commodi eaque animi nemo?.</p>
             </div>
         </game-modal>
         <game-modal class="hidden" :active="modals.failedActive" @closed="modals.failedActive = false">
