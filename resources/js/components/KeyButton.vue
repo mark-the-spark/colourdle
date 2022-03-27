@@ -58,8 +58,8 @@ export default {
 }
 
 .key span {
-    margin-left: 6px;
-    margin-right: 6px;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 </style>

@@ -11858,8 +11858,6 @@ h1 {
 
 .keyboard {
   margin-top: 10px;
-  margin-left: 8px;
-  margin-right: 8px;
   margin-bottom: 10px;
 }
 
@@ -11879,14 +11877,14 @@ h1 {
   text-transform: uppercase;
 }
 
-.key {
+.color-key {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
   flex: 1;
 }
 
-.key .key-item {
+.color-key .key-item {
   height: 40px;
   width: 46px;
 }
@@ -12036,6 +12034,8 @@ h1 {
 .row {
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin: 0 auto 8px;
 }
 
 .jump {

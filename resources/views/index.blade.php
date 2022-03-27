@@ -46,7 +46,7 @@
         <div class="container ">
             <div class="game">
 
-                <div class="key">
+                <div class="color-key">
 
                     <div class="key-item distance-12">
                     </div>
