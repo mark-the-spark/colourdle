@@ -87,7 +87,8 @@
                     <key-button @pressed="keyWasPressed" keystroke="o" :state="letterStates.o">o</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="p" :state="letterStates.p">p</key-button>
                 </div>
-                <div class="row">
+                <div class="row row-indented">
+                    <div class="spacer-half"></div>
                     <key-button @pressed="keyWasPressed" keystroke="a" :state="letterStates.a">a</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="s" :state="letterStates.s">s</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="d" :state="letterStates.d">d</key-button>
@@ -97,6 +98,8 @@
                     <key-button @pressed="keyWasPressed" keystroke="j" :state="letterStates.j">j</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="k" :state="letterStates.k">k</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="l" :state="letterStates.l">l</key-button>
+                    <div class="spacer-half"></div>
+
                 </div>
                 <div class="row">
                     <key-button @pressed="keyWasPressed" keystroke="Enter">enter</key-button>

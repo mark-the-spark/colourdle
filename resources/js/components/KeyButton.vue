@@ -25,8 +25,7 @@ export default {
     background-color: #D3D6DA;
     font-weight: bold;
     height: 50px;
-    /* width: 38px; */
-
+    flex: 1;
     display: float;
     align-items: center;
     justify-content: center;
@@ -58,8 +57,7 @@ export default {
 }
 
 .key span {
-    margin-left: 4px;
-    margin-right: 4px;
+    
 }
 
 </style>

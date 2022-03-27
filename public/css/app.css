@@ -11841,12 +11841,19 @@ h1 {
 
 .container {
   margin: 0 auto;
-  width: 340px;
+  padding: 0px 10px;
+  width: 100%;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 54px);
 }
 
+@media only screen and (min-width: 600px) {
+  .container {
+    width: 360px;
+  }
+}
 .center {
   text-align: center;
 }
@@ -12036,6 +12043,10 @@ h1 {
   justify-content: center;
   width: 100%;
   margin: 0 auto 8px;
+}
+
+.spacer-half {
+  flex: 0.5;
 }
 
 .jump {
