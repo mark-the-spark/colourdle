@@ -95,6 +95,9 @@ var app = createApp({
                 this.wiggle();
                 this.showMessage([
                     'Not enough letters',
+                    'You\'re short a letter or two',
+                    'Try pressing your keyboard a few more times',
+                    'That\'s not 5 letters y\'know?'
                 ]);
                 return;
             }
@@ -104,6 +107,8 @@ var app = createApp({
                 this.wiggle();
                 this.showMessage([
                     'Not a word last time I checked',
+                    'Never heard of it',
+                    'What dictionary are you using?',
                     'I don\'t think that\'s a word',
                     'Definitely not a word',
                     'You\'ve just made that up',

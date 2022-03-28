@@ -22067,7 +22067,13 @@ body {
   font-family: sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   color: black;
 }
 
@@ -22080,7 +22086,7 @@ h1 {
 }
 
 .navbar {
-  border-bottom: 2px solid #D3D6DA;
+  border-bottom: 2px solid #d3d6da;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22106,6 +22112,7 @@ h1 {
 }
 
 .flash-message {
+  text-align: center;
   position: absolute;
   left: 50%;
   top: 80px;
@@ -22151,7 +22158,7 @@ h1 {
 .tile {
   width: 60px;
   height: 60px;
-  border: 2px solid #D3D6DA;
+  border: 2px solid #d3d6da;
   margin: 3px;
   display: flex;
   justify-content: center;
@@ -22224,47 +22231,47 @@ h1 {
 }
 
 .distance-0-letter {
-  color: #31B60B;
+  color: #31b60b;
 }
 
 .distance-1-letter {
-  color: #F4BE06;
+  color: #f4be06;
 }
 
 .distance-2-letter {
-  color: #F4BE06;
+  color: #f4be06;
 }
 
 .distance-3-letter {
-  color: #FE8B09;
+  color: #fe8b09;
 }
 
 .distance-4-letter {
-  color: #FE8B09;
+  color: #fe8b09;
 }
 
 .distance-5-letter {
-  color: #D4210F;
+  color: #d4210f;
 }
 
 .distance-6-letter {
-  color: #D4210F;
+  color: #d4210f;
 }
 
 .distance-7-letter {
-  color: #B732FC;
+  color: #b732fc;
 }
 
 .distance-8-letter {
-  color: #B732FC;
+  color: #b732fc;
 }
 
 .distance-9-letter {
-  color: #3D7FF6;
+  color: #3d7ff6;
 }
 
 .distance-10-letter {
-  color: #3D7FF6;
+  color: #3d7ff6;
 }
 
 .distance-11-letter {
@@ -22280,58 +22287,58 @@ h1 {
 }
 
 .distance-0 {
-  background-color: #31B60B;
-  border: 2px solid #31B60B;
+  background-color: #31b60b;
+  border: 2px solid #31b60b;
 }
 
 .distance-1 {
-  background-color: #F4BE06;
-  border: 2px solid #F4BE06;
+  background-color: #f4be06;
+  border: 2px solid #f4be06;
 }
 
 .distance-2 {
-  background-color: #F4BE06;
-  border: 2px solid #F4BE06;
+  background-color: #f4be06;
+  border: 2px solid #f4be06;
 }
 
 .distance-3 {
-  background-color: #FE8B09;
-  border: 2px solid #FE8B09;
+  background-color: #fe8b09;
+  border: 2px solid #fe8b09;
 }
 
 .distance-4 {
-  background-color: #FE8B09;
-  border: 2px solid #FE8B09;
+  background-color: #fe8b09;
+  border: 2px solid #fe8b09;
 }
 
 .distance-5 {
-  background-color: #D4210F;
-  border: 2px solid #D4210F;
+  background-color: #d4210f;
+  border: 2px solid #d4210f;
 }
 
 .distance-6 {
-  background-color: #D4210F;
-  border: 2px solid #D4210F;
+  background-color: #d4210f;
+  border: 2px solid #d4210f;
 }
 
 .distance-7 {
-  background-color: #B732FC;
-  border: 2px solid #B732FC;
+  background-color: #b732fc;
+  border: 2px solid #b732fc;
 }
 
 .distance-8 {
-  background-color: #B732FC;
-  border: 2px solid #B732FC;
+  background-color: #b732fc;
+  border: 2px solid #b732fc;
 }
 
 .distance-9 {
-  background-color: #3D7FF6;
-  border: 2px solid #3D7FF6;
+  background-color: #3d7ff6;
+  border: 2px solid #3d7ff6;
 }
 
 .distance-10 {
-  background-color: #3D7FF6;
-  border: 2px solid #3D7FF6;
+  background-color: #3d7ff6;
+  border: 2px solid #3d7ff6;
 }
 
 .distance-11 {

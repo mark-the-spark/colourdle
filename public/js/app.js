@@ -19710,14 +19710,14 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
       if (!this.guessIsComplete()) {
         this.wiggle();
-        this.showMessage(['Not enough letters']);
+        this.showMessage(['Not enough letters', 'You\'re short a letter or two', 'Try pressing your keyboard a few more times', 'That\'s not 5 letters y\'know?']);
         return;
       } // only allow guess if it's a word in the dictionary
 
 
       if (!this.inWordList(this.guesses[this.currentRow])) {
         this.wiggle();
-        this.showMessage(['Not a word last time I checked', 'I don\'t think that\'s a word', 'Definitely not a word', 'You\'ve just made that up', 'Doesn\'t sound like a word to me']);
+        this.showMessage(['Not a word last time I checked', 'Never heard of it', 'What dictionary are you using?', 'I don\'t think that\'s a word', 'Definitely not a word', 'You\'ve just made that up', 'Doesn\'t sound like a word to me']);
         return;
       }
 

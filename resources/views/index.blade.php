@@ -142,9 +142,9 @@
         <game-modal class="hidden" :active="modals.helpActive" @closed="modals.helpActive = false">
             <div class="box ">
                 <h2 class="has-text-centered">How to play</h2>
-                <p class="is-italic has-text-centered">"It's like Wordle but better"</p>
+                <p class="is-italic has-text-centered">"Like Wordle, but better"</p>
                 <p class="quote-name pb-2 has-text-centered">- The NY Times</p>
-                <p class="mb-2">Guess the word by using colours! The colour of each tile tells you how close
+                <p class="mb-2">Guess the word by using colours. The colour of each tile tells you how close
                     to the correct letter you are.</p>
                 <h3 class="has-text-weight-bold">Examples</h3>
                 <div class="is-flex is-align-items-center mb-2">
