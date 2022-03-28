@@ -19730,8 +19730,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
         _this2.guesses[_this2.currentRow][i].status = 'distance-' + distance;
         console.log(distance);
-      });
-      this.animateGuess(); // check whether the overall guess is correct
+      }); // check whether the overall guess is correct
 
       var guessWord = '';
       this.guesses[this.currentRow].forEach(function (letter) {

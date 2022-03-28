@@ -123,8 +123,6 @@ var app = createApp({
                 console.log(distance);
             });
 
-            this.animateGuess();
-
             // check whether the overall guess is correct
             let guessWord = '';
             this.guesses[this.currentRow].forEach(letter => {
