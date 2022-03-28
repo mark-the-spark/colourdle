@@ -60,12 +60,13 @@
                     </div>
                     <div class="key-item distance-2">
                     </div>
-                    <div class="key-item distance-0">
+                    <div class="key-item distance-0 ml-2">
                     </div>
                 </div>
                 <div class="key-text">
                     <div>Cold</div>
-                    <div>Warm</div>
+                    <div>Warmer</div>
+                    <div>Correct!</div>
                 </div>
                 <tile-row :guess="guesses[0]" :class="wiggleRow == 0 ? 'wiggle' : '' "></tile-row>
                 <tile-row :guess="guesses[1]" :class="wiggleRow == 1 ? 'wiggle' : '' "></tile-row>
@@ -120,6 +121,9 @@
 
             </div>
         </div>
+        <div class="flash-message" v-if="message" v-cloak>
+            @{{ message }}
+        </div>
         <game-modal class="hidden" :active="modals.successActive" @closed="modals.successActive = false">
             <div class="box">
                 <h2 class="has-text-centered">Well done!</h2>
@@ -163,16 +167,13 @@
         </game-modal>
         <game-modal class="hidden" :active="modals.failedActive" @closed="modals.failedActive = false">
             <div class="box">
-                <h2>You didn't get the word in time. Too bad.</h2>
-                <p>Try practicing a little bit more.</p>
-            </div>
+                <h2 class="has-text-centered">Oh no!</h2>
+                <p class='mb-3'>The correct answer was <span
+                        class="has-font-weight-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
+                <p>Better luck tomorrow!</p>
         </game-modal>
+        
     </div>
-
-
-
-    <script src="js/app.js"></script>
-
 </body>
-
+<script type="application/javascript" src="js/app.js"></script>
 </html>

@@ -18,6 +18,7 @@ var app = createApp({
                 a: '', b: '', c: '', d: '', e: '', f: '', g: '', h: '', i: '', j: '', k: '', l: '', m: '', n: '', o: '', p: '', q: '', r: '', s: '', t: '', u: '', v: '', w: '', x: '', y: '', z: ''
             },
             allowInput: true,
+            message: '',
             modals: {
                 successActive: false,
                 helpActive: true,
@@ -91,12 +92,23 @@ var app = createApp({
 
             // only allow guess if it's a full guess
             if (!this.guessIsComplete()) {
+                this.wiggle();
+                this.showMessage([
+                    'Not enough letters',
+                ]);
                 return;
             }
 
             // only allow guess if it's a word in the dictionary
             if (!this.inWordList(this.guesses[this.currentRow])) {
                 this.wiggle();
+                this.showMessage([
+                    'Not a word last time I checked',
+                    'I don\'t think that\'s a word',
+                    'Definitely not a word',
+                    'You\'ve just made that up',
+                    'Doesn\'t sound like a word to me'
+                ]);
                 return;
             }
 
@@ -111,37 +123,7 @@ var app = createApp({
                 console.log(distance);
             });
 
-
-
-            // // first pass - mark correct tiles
-            // this.guesses[this.currentRow].forEach((tile, i) => {
-            //     if (tile.letter == correctAnswer[i]) {
-            //         console.log(`${tile.letter} is correct`);
-            //         this.guesses[this.currentRow][i].status = 'correct';
-            //         this.letterStates[tile.letter] = 'correct'
-            //         correctAnswer[i] = null;
-            //     } 
-            // })
-            // // second pass - present tiles
-            // this.guesses[this.currentRow].forEach((tile, i) => {
-            //     if (this.guesses[this.currentRow][i].status == undefined && correctAnswer.includes(tile.letter)) {
-            //         console.log(`status ${this.guesses[this.currentRow][i].status}`);
-            //         console.log(`${tile.letter} is present`);
-            //         this.guesses[this.currentRow][i].status = 'present';
-            //         this.letterStates[tile.letter] = 'present'
-            //         correctAnswer[correctAnswer.indexOf(tile.letter)] = null;
-            //     } 
-            // })
-
-            // // final pass 
-            // this.guesses[this.currentRow].forEach((tile, i) => {
-            //     if (this.guesses[this.currentRow][i].status == undefined) {
-            //         console.log(`status ${this.guesses[this.currentRow][i].status}`);
-            //         console.log(`${tile.letter} is incorrect`);
-            //         this.guesses[this.currentRow][i].status = 'incorrect';
-            //         this.letterStates[tile.letter] = 'incorrect'
-            //     }
-            // });
+            this.animateGuess();
 
             // check whether the overall guess is correct
             let guessWord = '';
@@ -191,6 +173,19 @@ var app = createApp({
         wiggle() {
             this.wiggleRow = this.currentRow;
             setTimeout(() => { this.wiggleRow = null }, 500);
+        },
+
+        showMessage(msg, time = 1500) {
+            if (typeof (msg) === 'object') {
+                this.message = msg[Math.floor(Math.random() * msg.length)];
+            } else {
+                this.message = msg;
+            }
+            if (time > 0) {
+                setTimeout(() => {
+                    this.message = ''
+                }, time)
+            }
         }
     }
 })

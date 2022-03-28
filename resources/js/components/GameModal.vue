@@ -7,8 +7,9 @@ export default {
         }
     }
 }
-</script>
 
+</script>
+ 
 <template>
      <div class="modal" :class="active ? 'is-active' : '' ">
         <div class="modal-background" @click="$emit('closed')"></div>

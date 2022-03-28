@@ -56,8 +56,4 @@ export default {
     background-color: #787C7E;
 }
 
-.key span {
-    
-}
-
 </style>
