@@ -24,16 +24,16 @@
                     </svg></a>
             </div>
             <a class="navbar-item" href="#">
-                <h1 class="center is-size-3 has-text-weight-bold">
-                    <span class="distance-0-letter">C</span>
-                    <span class="distance-1-letter">o</span>
-                    <span class="distance-4-letter">l</span>
-                    <span class="distance-10-letter">o</span>
-                    <span class="distance-3-letter">u</span>
-                    <span class="distance-7-letter">r</span>
-                    <span class="distance-2-letter">d</span>
-                    <span class="distance-9-letter">l</span>
-                    <span class="distance-6-letter">e</span>
+                <h1 class="center is-size-3 has-text-weight-bold is-flex">
+                    <div class="tile tile-x-small distance-0"><span class="">C</span></div>
+                    <div class="tile tile-x-small distance-6"><span class="">o</span></div>
+                    <div class="tile tile-x-small distance-2"><span class="">l</span></div>
+                    <div class="tile tile-x-small distance-9"><span class="">o</span></div>
+                    <div class="tile tile-x-small distance-5"><span class="">u</span></div>
+                    <div class="tile tile-x-small distance-13"><span class="">r</span></div>
+                    <div class="tile tile-x-small distance-2"><span class="">d</span></div>
+                    <div class="tile tile-x-small distance-7"><span class="">l</span></div>
+                    <div class="tile tile-x-small distance-3"><span class="">e</span></div>
                 </h1>
             </a>
             <a class="navbar-item" href="#">
@@ -122,15 +122,43 @@
         </div>
         <game-modal class="hidden" :active="modals.successActive" @closed="modals.successActive = false">
             <div class="box">
-                <h2>Well done! You sure know your colors.</h2>
+                <h2 class="has-text-centered">Well done!</h2>
+                <p class='mb-3'>The correct answer was indeed <span
+                        class="has-font-weight-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
+                <div class="has-text-centered">
+                    <button class="button is-success" @click="shareResult">
+                        <span class="icon is-small">
+                            <i class="fa-solid fa-share"></i>
+                        </span>
+                        <span>Share</span>
+                    </button>
+                </div>
             </div>
         </game-modal>
         <game-modal class="hidden" :active="modals.helpActive" @closed="modals.helpActive = false">
-            <div class="box">
-                <h2>Here's how it all works</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad cumque voluptatibus provident neque
-                    quisquam voluptatem eum ipsa dignissimos exercitationem. Similique quis veritatis tempore dicta
-                    deserunt porro commodi eaque animi nemo?.</p>
+            <div class="box ">
+                <h2 class="has-text-centered">How to play</h2>
+                <p class="is-italic has-text-centered">"It's like Wordle but better"</p>
+                <p class="quote-name pb-2 has-text-centered">- The NY Times</p>
+                <p class="mb-2">Guess the word by using colours! The colour of each tile tells you how close
+                    to the correct letter you are.</p>
+                <h3 class="has-text-weight-bold">Examples</h3>
+                <div class="is-flex is-align-items-center mb-2">
+                    <div class="tile tile-small tile-inline distance-12"><span>A</span></div>
+                    <p class="ml-2"> ...the wrong side of the alphabet</p>
+                </div>
+                <div class="is-flex is-align-items-center mb-2">
+                    <div class="tile tile-small tile-inline distance-4"><span>B</span></div>
+                    <p class="ml-2"> ...getting closer</p>
+                </div>
+                <div class="is-flex is-align-items-center mb-2">
+                    <div class="tile tile-small tile-inline distance-0"><span>C</span></div>
+                    <p class="ml-2"> ...correct!</p>
+                </div>
+                <p class="mb-2">Sound easy? There is a twist. <span class="has-text-weight-bold">In Colourdle,
+                        "a" is as close to "z" as it is to "b".</span>&#129327;</p>
+                <p>Good luck! </p>
+
             </div>
         </game-modal>
         <game-modal class="hidden" :active="modals.failedActive" @closed="modals.failedActive = false">

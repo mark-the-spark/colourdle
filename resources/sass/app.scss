@@ -2,6 +2,10 @@
 
 @import 'bulma/css/bulma.css';
 
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+
 body {
     font-family: sans-serif;
 }
@@ -18,7 +22,6 @@ h1,h2,h3,h4,h5,h6,p {
 
 h1 {
     font-family: 'Abril Fatface', cursive;
-    letter-spacing: 1px;
 }
 
 .hidden {
@@ -31,6 +34,7 @@ h1 {
     border-bottom: 2px solid #D3D6DA;
     display:flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -40,6 +44,19 @@ h1 {
     line-height: 1.0;
 }
 
+// Modal
+
+.modal-content {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+}
+
+.modal-content h2 {
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
 // Utility
 
 .container {
@@ -83,10 +100,42 @@ h1 {
     align-items: center;
 }
 
+.tile-small {
+    width: 40px;
+    height: 40px;
+}
+
+.tile-x-small {
+    width: 26px;
+    height: 26px;
+    margin: 1.5px;
+}
+
+
+.tile-inline {
+    flex-basis: 40px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
 .tile span {
     font-size: 38px;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.tile-small span {
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
+.tile-x-small span {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
 }
 
 .color-key {

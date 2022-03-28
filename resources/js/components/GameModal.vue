@@ -11,7 +11,7 @@ export default {
 
 <template>
      <div class="modal" :class="active ? 'is-active' : '' ">
-        <div class="modal-background"></div>
+        <div class="modal-background" @click="$emit('closed')"></div>
         <div class="modal-content">
             <slot></slot>
         </div>

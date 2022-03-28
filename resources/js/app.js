@@ -15,12 +15,12 @@ var app = createApp({
             ],
             currentRow: 0,
             letterStates: {
-                a: '', b: '', c: '', d: '', e: '',f: '',g: '',h: '',i: '',j: '',k: '',l: '',m: '',n: '',o: '',p: '',q: '',r: '',s: '',t: '',u: '',v: '',w: '',x: '',y: '',z: ''
+                a: '', b: '', c: '', d: '', e: '', f: '', g: '', h: '', i: '', j: '', k: '', l: '', m: '', n: '', o: '', p: '', q: '', r: '', s: '', t: '', u: '', v: '', w: '', x: '', y: '', z: ''
             },
             allowInput: true,
             modals: {
                 successActive: false,
-                helpActive: false,
+                helpActive: true,
                 failedActive: false
 
             },
@@ -44,9 +44,9 @@ var app = createApp({
     },
 
     methods: {
-        
+
         keyWasPressed(key) {
-            if (! this.allowInput) return;
+            if (!this.allowInput) return;
 
             if (/^[a-zA-Z]$/.test(key)) {
                 this.addTile(key);
@@ -70,12 +70,27 @@ var app = createApp({
             this.guesses[this.currentRow].pop();
         },
 
+        shareResult() {
+            console.log('share button clicked');
+            if (navigator.share) {
+                navigator.share({
+                    title: 'WebShare API Demo',
+                    url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                })
+                    .catch(console.error);
+            } else {
+                console.log('sharing not supported');
+            }
+        },
+
         tryGuess() {
-           
+
             console.log('Trying Guess');
 
             // only allow guess if it's a full guess
-           if (!this.guessIsComplete()) {
+            if (!this.guessIsComplete()) {
                 return;
             }
 
@@ -91,7 +106,7 @@ var app = createApp({
             console.log('correct answer : ' + correctAnswer);
             // Check distance away from correct letter for each tile
             this.guesses[this.currentRow].forEach((tile, i) => {
-                let distance = this.distanceBetween( this.guesses[this.currentRow][i].letter , correctAnswer[i]);
+                let distance = this.distanceBetween(this.guesses[this.currentRow][i].letter, correctAnswer[i]);
                 this.guesses[this.currentRow][i].status = 'distance-' + distance;
                 console.log(distance);
             });
@@ -147,12 +162,12 @@ var app = createApp({
                 this.modals.failedActive = true;
             }
 
-    
+
         },
 
-        distanceBetween(a,b) {
+        distanceBetween(a, b) {
             let alphabet = 'abcdefghijklmnopqrstuvwxyz'
-            let distance = Math.abs(alphabet.indexOf(a) -  alphabet.indexOf(b));
+            let distance = Math.abs(alphabet.indexOf(a) - alphabet.indexOf(b));
             if (distance > 13) {
                 return alphabet.length - distance;
             }
@@ -169,13 +184,13 @@ var app = createApp({
             let wordString = word.map(letter => {
                 return letter.letter;
             }).join('');
-            if(allWords.includes(wordString)) return true;
+            if (allWords.includes(wordString)) return true;
             return false;
         },
 
         wiggle() {
             this.wiggleRow = this.currentRow;
-            setTimeout(() => {this.wiggleRow = null}, 500);
+            setTimeout(() => { this.wiggleRow = null }, 500);
         }
     }
 })

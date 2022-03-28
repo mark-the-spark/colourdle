@@ -19463,23 +19463,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-background"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_2 = {
+var _hoisted_1 = {
   "class": "modal-content"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["modal", $props.active ? 'is-active' : ''])
-  }, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "modal-background",
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return _ctx.$emit('closed');
+    })
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "modal-close is-large",
     "aria-label": "close",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('closed');
     })
   })], 2
@@ -19642,7 +19640,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       allowInput: true,
       modals: {
         successActive: false,
-        helpActive: false,
+        helpActive: true,
         failedActive: false
       },
       wiggleRow: null,
@@ -19687,6 +19685,20 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     },
     removeTile: function removeTile() {
       this.guesses[this.currentRow].pop();
+    },
+    shareResult: function shareResult() {
+      console.log('share button clicked');
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'WebShare API Demo',
+          url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+        }).then(function () {
+          console.log('Thanks for sharing!');
+        })["catch"](console.error);
+      } else {
+        console.log('sharing not supported');
+      }
     },
     tryGuess: function tryGuess() {
       var _this2 = this;
