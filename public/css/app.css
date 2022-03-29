@@ -22083,6 +22083,7 @@ h1 {
 
 button {
   padding: 0px;
+  touch-action: manipulation;
 }
 
 .hidden {
