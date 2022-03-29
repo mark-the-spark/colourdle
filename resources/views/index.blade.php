@@ -43,9 +43,8 @@
                 </svg>
             </a>
         </nav>
-        <div class="container ">
-            <div class="game">
-
+        <div class="game-container">
+            <div class="board">
                 <div class="color-key">
 
                     <div class="key-item distance-12">
@@ -88,7 +87,7 @@
                     <key-button @pressed="keyWasPressed" keystroke="o" :state="letterStates.o">o</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="p" :state="letterStates.p">p</key-button>
                 </div>
-                <div class="row row-indented">
+                <div class="row">
                     <div class="spacer-half"></div>
                     <key-button @pressed="keyWasPressed" keystroke="a" :state="letterStates.a">a</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="s" :state="letterStates.s">s</key-button>

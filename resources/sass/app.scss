@@ -83,18 +83,16 @@ h1 {
 
 // Utility
 
-.container {
+.game-container {
     margin: 0 auto;
-    padding: 0px 10px;
-    width: 100%;
-    max-width: 360px;
+    padding: 0px 0px;
     display: flex;
     flex-direction: column;
     height: calc(100% - $header-height);
 }
 
 @media only screen and (min-width: 600px) {
-    .container {
+    .game-container {
         width: 360px;
     }
 }
@@ -103,14 +101,17 @@ h1 {
     text-align: center;
 }
 
-.game {
+.board {
     flex-grow: 1;
-    margin-top: 10px;
+    margin: 10px 10px 0px;
+    max-width: 360px;
 }
 
 .keyboard {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .tile {
@@ -163,12 +164,12 @@ h1 {
 .color-key {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     flex: 1;
 }
 
 .color-key .key-item {
-    height: 40px;
+    height: 35px;
     width: 46px;
 }
 
@@ -318,7 +319,7 @@ h1 {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 0 auto 8px;
+    margin: 0 auto 5px;
 }
 
 .spacer-half {
