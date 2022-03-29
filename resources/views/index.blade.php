@@ -75,7 +75,7 @@
                 <tile-row :guess="guesses[5]" :class="wiggleRow == 5 ? 'wiggle' : '' "></tile-row>
             </div>
             <div class="keyboard">
-                <div class="row">
+                <div class="keyboard-row">
                     <key-button @pressed="keyWasPressed" keystroke="q" :state="letterStates.q">q</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="w" :state="letterStates.w">w</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="e" :state="letterStates.e">e</key-button>
@@ -89,7 +89,7 @@
                     
                     
                 </div>
-                <div class="row">
+                <div class="keyboard-row">
                     <div class="spacer-half"></div>
                     <key-button @pressed="keyWasPressed" keystroke="a" :state="letterStates.a">a</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="s" :state="letterStates.s">s</key-button>
@@ -103,7 +103,7 @@
                     <div class="spacer-half"></div>
 
                 </div>
-                <div class="row">
+                <div class="keyboard-row">
                     <key-button @pressed="keyWasPressed" keystroke="Enter">enter</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="x" :state="letterStates.x">x</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="z" :state="letterStates.z">z</key-button>
