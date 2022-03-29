@@ -86,6 +86,8 @@
                     <key-button @pressed="keyWasPressed" keystroke="i" :state="letterStates.i">i</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="o" :state="letterStates.o">o</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="p" :state="letterStates.p">p</key-button>
+                    
+                    
                 </div>
                 <div class="row">
                     <div class="spacer-half"></div>
