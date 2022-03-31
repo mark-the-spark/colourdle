@@ -14,16 +14,30 @@ var app = createApp({
                 [], [], [], [], [], []
             ],
             currentRow: 0,
-            letterStates: {
-                a: '', b: '', c: '', d: '', e: '', f: '', g: '', h: '', i: '', j: '', k: '', l: '', m: '', n: '', o: '', p: '', q: '', r: '', s: '', t: '', u: '', v: '', w: '', x: '', y: '', z: ''
-            },
             allowInput: true,
             message: '',
             modals: {
                 successActive: false,
-                helpActive: true,
-                failedActive: false
+                helpActive: false,
+                failedActive: false,
+                statsActive: true,
 
+            },
+            
+            stats: {
+                played: 0,
+                wins: 0,
+                winPercentage: 0,
+                currentStreak: 0,
+                maxStreak: 0,
+                guessDistribution: {
+                    r1: 0,
+                    r2: 0,
+                    r3: 0,
+                    r4: 0,
+                    r5: 0,
+                    r6: 0
+                } 
             },
             wiggleRow: null,
             wordOfTheDay: null
@@ -38,6 +52,9 @@ var app = createApp({
 
     mounted() {
         this.wordOfTheDay = getWordOfTheDay();
+
+        this.retrieve();
+
         window.addEventListener("keydown", e => {
             this.keyWasPressed(e.key);
 
@@ -117,10 +134,12 @@ var app = createApp({
                 return;
             }
 
+            // Allowable guess.
             this.allowInput = false;
 
             let correctAnswer = this.wordOfTheDay.split('');
             console.log('correct answer : ' + correctAnswer);
+
             // Check distance away from correct letter for each tile
             this.guesses[this.currentRow].forEach((tile, i) => {
                 let distance = this.distanceBetween(this.guesses[this.currentRow][i].letter, correctAnswer[i]);
@@ -134,16 +153,24 @@ var app = createApp({
                 guessWord += letter.letter;
             });
 
+            this.currentRow++;
+            this.store();
+
             if (guessWord === this.wordOfTheDay) {
                 this.modals.successActive = true;
+                this.updateStats('success', this.currentRow);
+                this.store();
                 return;
             }
 
             // move to the next line
             if (this.currentRow < 5) {
-                this.currentRow++;
                 this.allowInput = true;
+                this.store();
             } else {
+                this.allowInput = false;
+                this.updateStats('fail');
+                this.store();
                 this.modals.failedActive = true;
             }
 
@@ -189,7 +216,49 @@ var app = createApp({
                     this.message = ''
                 }, time)
             }
+        },
+
+        updateStats(result, numGuesses = null) {
+          
+            console.log('updating stats...');
+            console.log(this.stats);
+            if (result == 'success') {
+                this.stats.played++;
+                this.stats.wins++;
+                this.stats.currentStreak++;
+                this.stats.winPercentage = this.stats.wins / this.stats.played;
+                if (this.stats.currentStreak >= this.stats.maxStreak) this.stats.maxStreak = this.stats.currentStreak;
+                this.stats.guessDistribution['r' + numGuesses]++;
+            } else {
+                this.stats.played++;
+                this.stats.currentStreak = 0;
+            }
+
+        },
+
+        store() {
+            console.log('Storing...');
+            let date = new Date();
+            let dateString = `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
+
+            localStorage.setItem('currentRow', this.currentRow);
+            localStorage.setItem('guesses', JSON.stringify(this.guesses));
+            localStorage.setItem('attemptDate', dateString);
+            localStorage.setItem('stats', JSON.stringify(this.stats));
+        },
+
+        retrieve() {
+            let date = new Date();
+            let todayDateString = `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
+            if (localStorage.getItem('attemptDate') == todayDateString) {
+                if (localStorage.getItem('currentRow')) this.currentRow = localStorage.getItem('currentRow');
+                if (localStorage.getItem('guesses')) this.guesses = JSON.parse(localStorage.getItem('guesses'));
+                
+            }
+            if (localStorage.getItem('stats')) this.stats = JSON.parse(localStorage.getItem('stats'));
         }
+
+
     }
 })
 

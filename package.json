@@ -25,6 +25,7 @@
         "blueimp-md5": "^2.19.0",
         "bulma": "^0.9.3",
         "vue": "^3.2.31",
-        "vue-router": "^4.0.14"
+        "vue-router": "^4.0.14",
+        "vue3-storage": "^0.1.11"
     }
 }

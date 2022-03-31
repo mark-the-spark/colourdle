@@ -36,7 +36,7 @@
                     <div class="tile tile-x-small distance-3"><span class="">e</span></div>
                 </h1>
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="#" @click="modals.statsActive = true">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                     <path fill="var(--color-tone-1)"
                         d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path>
@@ -76,42 +76,42 @@
             </div>
             <div class="keyboard">
                 <div class="keyboard-row">
-                    <key-button @pressed="keyWasPressed" keystroke="q" :state="letterStates.q">q</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="w" :state="letterStates.w">w</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="e" :state="letterStates.e">e</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="r" :state="letterStates.r">r</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="t" :state="letterStates.t">t</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="y" :state="letterStates.y">y</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="u" :state="letterStates.u">u</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="i" :state="letterStates.i">i</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="o" :state="letterStates.o">o</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="p" :state="letterStates.p">p</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="q">q</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="w">w</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="e">e</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="r">r</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="t">t</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="y">y</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="u">u</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="i">i</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="o">o</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="p">p</key-button>
                     
                     
                 </div>
                 <div class="keyboard-row">
                     <div class="spacer-half"></div>
-                    <key-button @pressed="keyWasPressed" keystroke="a" :state="letterStates.a">a</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="s" :state="letterStates.s">s</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="d" :state="letterStates.d">d</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="f" :state="letterStates.f">f</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="g" :state="letterStates.g">g</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="h" :state="letterStates.h">h</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="j" :state="letterStates.j">j</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="k" :state="letterStates.k">k</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="l" :state="letterStates.l">l</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="a">a</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="s">s</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="d">d</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="f">f</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="g">g</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="h">h</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="j">j</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="k">k</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="l">l</key-button>
                     <div class="spacer-half"></div>
 
                 </div>
                 <div class="keyboard-row">
                     <key-button @pressed="keyWasPressed" keystroke="Enter">enter</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="x" :state="letterStates.x">x</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="z" :state="letterStates.z">z</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="c" :state="letterStates.c">c</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="v" :state="letterStates.v">v</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="b" :state="letterStates.b">b</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="n" :state="letterStates.n">n</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="m" :state="letterStates.m">m</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="x" >x</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="z" >z</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="c" >c</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="v" >v</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="b" >b</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="n" >n</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="m" >m</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="Backspace"><svg xmlns="http://www.w3.org/2000/svg"
                             height="24" viewBox="0 0 24 24" width="24">
                             <path fill="var(--color-tone-1)"
@@ -125,6 +125,7 @@
         <div class="flash-message" v-if="message" v-cloak>
             @{{ message }}
         </div>
+        
         <game-modal class="hidden" :active="modals.successActive" @closed="modals.successActive = false">
             <div class="box">
                 <h2 class="has-text-centered">Well done!</h2>
@@ -172,7 +173,60 @@
                 <p class='mb-3'>The correct answer was <span
                         class="has-font-weight-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
                 <p>Better luck tomorrow!</p>
+            </div>
         </game-modal>
+
+        <game-modal class="hidden" :active="modals.statsActive" @closed="modals.statsActive = false">
+            <div class="box">
+                <h2 class="has-text-centered">Statistics</h2>
+                <div class="is-flex is-justify-content-space-around">
+                    <div class="has-text-centered stat-item">
+                        <h3>Played</h3>
+                        <h4>@{{ stats.played }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>Win %</h3>
+                        <h4>@{{ stats.winPercentage * 100 }}%</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>Current Streak</h3>
+                        <h4>@{{ stats.currentStreak }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>Max Streak</h3>
+                        <h4>@{{ stats.maxStreak }}</h4>
+                    </div>
+                </div>
+                <h3 class="has-text-centered has-text-weight-bold mt-3">Guess Distribution</h3>
+                <div class="is-flex is-justify-content-space-around">
+                    <div class="has-text-centered stat-item">
+                        <h3>1</h3>
+                        <h4>@{{ stats.guessDistribution.r1 }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>2</h3>
+                        <h4>@{{ stats.guessDistribution.r2 }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>3</h3>
+                        <h4>@{{ stats.guessDistribution.r3 }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>4</h3>
+                        <h4>@{{ stats.guessDistribution.r4 }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>5</h3>
+                        <h4>@{{ stats.guessDistribution.r5 }}</h4>
+                    </div>
+                    <div class="has-text-centered stat-item">
+                        <h3>6</h3>
+                        <h4>@{{ stats.guessDistribution.r6 }}</h4>
+                    </div>
+                </div>
+            </div>
+        </game-modal>
+        
         
     </div>
 </body>

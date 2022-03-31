@@ -19611,40 +19611,28 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     return {
       guesses: [[], [], [], [], [], []],
       currentRow: 0,
-      letterStates: {
-        a: '',
-        b: '',
-        c: '',
-        d: '',
-        e: '',
-        f: '',
-        g: '',
-        h: '',
-        i: '',
-        j: '',
-        k: '',
-        l: '',
-        m: '',
-        n: '',
-        o: '',
-        p: '',
-        q: '',
-        r: '',
-        s: '',
-        t: '',
-        u: '',
-        v: '',
-        w: '',
-        x: '',
-        y: '',
-        z: ''
-      },
       allowInput: true,
       message: '',
       modals: {
         successActive: false,
-        helpActive: true,
-        failedActive: false
+        helpActive: false,
+        failedActive: false,
+        statsActive: true
+      },
+      stats: {
+        played: 0,
+        wins: 0,
+        winPercentage: 0,
+        currentStreak: 0,
+        maxStreak: 0,
+        guessDistribution: {
+          r1: 0,
+          r2: 0,
+          r3: 0,
+          r4: 0,
+          r5: 0,
+          r6: 0
+        }
       },
       wiggleRow: null,
       wordOfTheDay: null
@@ -19659,6 +19647,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     var _this = this;
 
     this.wordOfTheDay = (0,_src_words_js__WEBPACK_IMPORTED_MODULE_2__.getWordOfTheDay)();
+    this.retrieve();
     window.addEventListener("keydown", function (e) {
       _this.keyWasPressed(e.key);
     });
@@ -19719,7 +19708,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
         this.wiggle();
         this.showMessage(['Not a word last time I checked', 'Never heard of it', 'What dictionary are you using?', 'I don\'t think that\'s a word', 'Definitely not a word', 'You\'ve just made that up', 'Doesn\'t sound like a word to me']);
         return;
-      }
+      } // Allowable guess.
+
 
       this.allowInput = false;
       var correctAnswer = this.wordOfTheDay.split('');
@@ -19736,17 +19726,24 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       this.guesses[this.currentRow].forEach(function (letter) {
         guessWord += letter.letter;
       });
+      this.currentRow++;
+      this.store();
 
       if (guessWord === this.wordOfTheDay) {
         this.modals.successActive = true;
+        this.updateStats('success', this.currentRow);
+        this.store();
         return;
       } // move to the next line
 
 
       if (this.currentRow < 5) {
-        this.currentRow++;
         this.allowInput = true;
+        this.store();
       } else {
+        this.allowInput = false;
+        this.updateStats('fail');
+        this.store();
         this.modals.failedActive = true;
       }
     },
@@ -19795,6 +19792,43 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
           _this4.message = '';
         }, time);
       }
+    },
+    updateStats: function updateStats(result) {
+      var numGuesses = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      console.log('updating stats...');
+      console.log(this.stats);
+
+      if (result == 'success') {
+        this.stats.played++;
+        this.stats.wins++;
+        this.stats.currentStreak++;
+        this.stats.winPercentage = this.stats.wins / this.stats.played;
+        if (this.stats.currentStreak >= this.stats.maxStreak) this.stats.maxStreak = this.stats.currentStreak;
+        this.stats.guessDistribution['r' + numGuesses]++;
+      } else {
+        this.stats.played++;
+        this.stats.currentStreak = 0;
+      }
+    },
+    store: function store() {
+      console.log('Storing...');
+      var date = new Date();
+      var dateString = "".concat(date.getFullYear()).concat(date.getMonth()).concat(date.getDate());
+      localStorage.setItem('currentRow', this.currentRow);
+      localStorage.setItem('guesses', JSON.stringify(this.guesses));
+      localStorage.setItem('attemptDate', dateString);
+      localStorage.setItem('stats', JSON.stringify(this.stats));
+    },
+    retrieve: function retrieve() {
+      var date = new Date();
+      var todayDateString = "".concat(date.getFullYear()).concat(date.getMonth()).concat(date.getDate());
+
+      if (localStorage.getItem('attemptDate') == todayDateString) {
+        if (localStorage.getItem('currentRow')) this.currentRow = localStorage.getItem('currentRow');
+        if (localStorage.getItem('guesses')) this.guesses = JSON.parse(localStorage.getItem('guesses'));
+      }
+
+      if (localStorage.getItem('stats')) this.stats = JSON.parse(localStorage.getItem('stats'));
     }
   }
 });
