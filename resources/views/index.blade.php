@@ -10,6 +10,18 @@
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GZNMWKD28"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7GZNMWKD28');
+    </script>
 </head>
 
 <body>
@@ -86,8 +98,8 @@
                     <key-button @pressed="keyWasPressed" keystroke="i">i</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="o">o</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="p">p</key-button>
-                    
-                    
+
+
                 </div>
                 <div class="keyboard-row">
                     <div class="spacer-half"></div>
@@ -105,13 +117,13 @@
                 </div>
                 <div class="keyboard-row">
                     <key-button @pressed="keyWasPressed" keystroke="Enter">enter</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="x" >x</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="z" >z</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="c" >c</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="v" >v</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="b" >b</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="n" >n</key-button>
-                    <key-button @pressed="keyWasPressed" keystroke="m" >m</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="x">x</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="z">z</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="c">c</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="v">v</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="b">b</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="n">n</key-button>
+                    <key-button @pressed="keyWasPressed" keystroke="m">m</key-button>
                     <key-button @pressed="keyWasPressed" keystroke="Backspace"><svg xmlns="http://www.w3.org/2000/svg"
                             height="24" viewBox="0 0 24 24" width="24">
                             <path fill="var(--color-tone-1)"
@@ -125,7 +137,7 @@
         <div class="flash-message" v-if="message" v-cloak>
             @{{ message }}
         </div>
-        
+
         <game-modal class="hidden" :active="modals.successActive" @closed="modals.successActive = false">
             <div class="box">
                 <h2 class="has-text-centered">Well done!</h2>
@@ -226,9 +238,10 @@
                 </div>
             </div>
         </game-modal>
-        
-        
+
+
     </div>
 </body>
 <script type="application/javascript" src="js/app.js"></script>
+
 </html>
