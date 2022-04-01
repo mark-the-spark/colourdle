@@ -18,9 +18,9 @@ var app = createApp({
             message: '',
             modals: {
                 successActive: false,
-                helpActive: false,
+                helpActive: true,
                 failedActive: false,
-                statsActive: true,
+                statsActive: false,
 
             },
             

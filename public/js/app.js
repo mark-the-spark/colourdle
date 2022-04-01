@@ -19615,9 +19615,9 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       message: '',
       modals: {
         successActive: false,
-        helpActive: false,
+        helpActive: true,
         failedActive: false,
-        statsActive: true
+        statsActive: false
       },
       stats: {
         played: 0,
