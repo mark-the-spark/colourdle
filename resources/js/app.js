@@ -164,7 +164,7 @@ var app = createApp({
             }
 
             // move to the next line
-            if (this.currentRow < 5) {
+            if (this.currentRow < 6) {
                 this.allowInput = true;
                 this.store();
             } else {

@@ -19737,7 +19737,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       } // move to the next line
 
 
-      if (this.currentRow < 5) {
+      if (this.currentRow < 6) {
         this.allowInput = true;
         this.store();
       } else {
