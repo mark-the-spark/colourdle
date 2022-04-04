@@ -19683,8 +19683,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
       if (navigator.share) {
         navigator.share({
-          title: 'WebShare API Demo',
-          url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+          title: 'Here\'s my Colourdle result!',
+          text: "\n                        I got my Colourdle in ".concat(currentRow, "/6 attempts.\n\n                        U+1F600 U+1F7E5\n                    ")
         }).then(function () {
           console.log('Thanks for sharing!');
         })["catch"](console.error);
