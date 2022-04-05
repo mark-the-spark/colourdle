@@ -59,6 +59,8 @@ var app = createApp({
             this.keyWasPressed(e.key);
 
         });
+
+        this.getResultText();
     },
 
     methods: {
@@ -90,10 +92,11 @@ var app = createApp({
 
         shareResult() {
             console.log('share button clicked');
+            let text = this.getResultText();
             if (navigator.share) {
                 navigator.share({
                     title: 'Here\'s my Colourdle result!',
-                    text: 'I got my Colourdle in ' + this.numGuesses + '/6 attempts. 🟧 🟩',
+                    text: text,
                 }).then(() => {
                     console.log('Thanks for sharing!');
                 })
@@ -101,6 +104,33 @@ var app = createApp({
             } else {
                 console.log('sharing not supported');
             }
+        },
+
+        getResultText() {
+            console.log("Getting result text");
+            let text = 'I got my Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
+
+            let rows = this.guesses.map(row => {
+                return row.map(item => {
+                    if (item.status == 'distance-0') return '🟩';
+                    if (item.status == 'distance-1' || item.status =='distance-2') return '🟨'
+                    if (item.status == 'distance-3' || item.status =='distance-4') return '🟧'
+                    if (item.status == 'distance-5' || item.status =='distance-6') return '🟥'
+                    if (item.status == 'distance-7' || item.status =='distance-8') return '🟪'
+                    if (item.status == 'distance-9' || item.status =='distance-10') return '🟦'
+                    if (item.status == 'distance-11' || item.status =='distance-12' || item.status =='distance-13') return '⬛️'
+                });
+            });
+
+            rows = rows.map(row => {
+                return row.join('') + '\n'
+            })
+            
+            rows.forEach(row => {
+                text += row;
+            })
+            
+            return text;
         },
 
         tryGuess() {

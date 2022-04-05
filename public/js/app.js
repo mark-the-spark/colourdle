@@ -19651,6 +19651,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     window.addEventListener("keydown", function (e) {
       _this.keyWasPressed(e.key);
     });
+    this.getResultText();
   },
   methods: {
     keyWasPressed: function keyWasPressed(key) {
@@ -19680,17 +19681,40 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     },
     shareResult: function shareResult() {
       console.log('share button clicked');
+      var text = this.getResultText();
 
       if (navigator.share) {
         navigator.share({
           title: 'Here\'s my Colourdle result!',
-          text: 'I got my Colourdle in ' + this.numGuesses + '/6 attempts. 🟧 🟩'
+          text: text
         }).then(function () {
           console.log('Thanks for sharing!');
         })["catch"](console.error);
       } else {
         console.log('sharing not supported');
       }
+    },
+    getResultText: function getResultText() {
+      console.log("Getting result text");
+      var text = 'I got my Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
+      var rows = this.guesses.map(function (row) {
+        return row.map(function (item) {
+          if (item.status == 'distance-0') return '🟩';
+          if (item.status == 'distance-1' || item.status == 'distance-2') return '🟨';
+          if (item.status == 'distance-3' || item.status == 'distance-4') return '🟧';
+          if (item.status == 'distance-5' || item.status == 'distance-6') return '🟥';
+          if (item.status == 'distance-7' || item.status == 'distance-8') return '🟪';
+          if (item.status == 'distance-9' || item.status == 'distance-10') return '🟦';
+          if (item.status == 'distance-11' || item.status == 'distance-12' || item.status == 'distance-13') return '⬛️';
+        });
+      });
+      rows = rows.map(function (row) {
+        return row.join('') + '\n';
+      });
+      rows.forEach(function (row) {
+        text += row;
+      });
+      return text;
     },
     tryGuess: function tryGuess() {
       var _this2 = this;
