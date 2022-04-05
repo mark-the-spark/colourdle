@@ -94,10 +94,10 @@ var app = createApp({
                 navigator.share({
                     title: 'Here\'s my Colourdle result!',
                     text: `
-                        I got my Colourdle in ${currentRow}/6 attempts.
+                I got my Colourdle in ${currentRow}/6 attempts.
 
                         U+1F600 U+1F7E5
-                    `
+                    `,
                 }).then(() => {
                     console.log('Thanks for sharing!');
                 })
