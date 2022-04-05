@@ -109,7 +109,7 @@ var app = createApp({
 
         getResultText() {
             console.log("Getting result text");
-            let text = 'I got my Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
+            let text = 'Not to brag, but I completed today\'s Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
 
             let rows = this.guesses.map(row => {
                 return row.map(item => {

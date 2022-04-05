@@ -19697,7 +19697,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     },
     getResultText: function getResultText() {
       console.log("Getting result text");
-      var text = 'I got my Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
+      var text = 'Not to brag, but I completed today\'s Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
       var rows = this.guesses.map(function (row) {
         return row.map(function (item) {
           if (item.status == 'distance-0') return '🟩';

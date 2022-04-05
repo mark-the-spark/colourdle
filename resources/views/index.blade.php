@@ -144,11 +144,12 @@
                 <p class='mb-3'>The correct answer was indeed <span
                         class="has-font-weight-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
                 <div class="has-text-centered">
+                <p class="mb-3">Fancy bragging about how smart you are? Then share your result!</p>
                     <button class="button is-success" @click="shareResult">
                         <span class="icon is-small">
                             <i class="fa-solid fa-share"></i>
                         </span>
-                        <span>Share</span>
+                        <span>Share My Result</span>
                     </button>
                 </div>
             </div>
