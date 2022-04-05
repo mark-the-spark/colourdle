@@ -236,6 +236,14 @@
                         <h4>@{{ stats.guessDistribution.r6 }}</h4>
                     </div>
                 </div>
+                <div class="has-text-centered">
+                    <button class="button is-success" @click="shareResult">
+                        <span class="icon is-small">
+                            <i class="fa-solid fa-share"></i>
+                        </span>
+                        <span>Share</span>
+                    </button>
+                </div>
             </div>
         </game-modal>
 
