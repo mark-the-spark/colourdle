@@ -19686,7 +19686,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       if (navigator.share) {
         navigator.share({
           title: 'Here\'s my Colourdle result!',
-          link: 'https://colourdle.com',
+          url: 'https://colourdle.com',
           text: text
         }).then(function () {
           console.log('Thanks for sharing!');
