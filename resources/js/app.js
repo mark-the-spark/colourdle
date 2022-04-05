@@ -96,6 +96,7 @@ var app = createApp({
             if (navigator.share) {
                 navigator.share({
                     title: 'Here\'s my Colourdle result!',
+                    link: 'https://colourdle.com',
                     text: text,
                 }).then(() => {
                     console.log('Thanks for sharing!');
