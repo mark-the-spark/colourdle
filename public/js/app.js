@@ -19684,7 +19684,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       if (navigator.share) {
         navigator.share({
           title: 'Here\'s my Colourdle result!',
-          text: 'I got my Colourdle in ${currentRow}/6 attempts. U+1F600 U+1F7E5'
+          text: 'I got my Colourdle in ' + this.numGuesses + '/6 attempts. U+1F600 U+1F7E5'
         }).then(function () {
           console.log('Thanks for sharing!');
         })["catch"](console.error);

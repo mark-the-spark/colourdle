@@ -93,7 +93,7 @@ var app = createApp({
             if (navigator.share) {
                 navigator.share({
                     title: 'Here\'s my Colourdle result!',
-                    text: 'I got my Colourdle in ${currentRow}/6 attempts. U+1F600 U+1F7E5',
+                    text: 'I got my Colourdle in ' + this.numGuesses + '/6 attempts. U+1F600 U+1F7E5',
                 }).then(() => {
                     console.log('Thanks for sharing!');
                 })
