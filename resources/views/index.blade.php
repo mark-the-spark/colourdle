@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-    <title>Colourdle</title>
+    <title>Colourdle - The Original World-Colour Guessing Game!</title>
+    <meta name="description" content="Colourdle is a fun and challenging game where you have to guess the word from the colours - try it and see how you compare!">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
