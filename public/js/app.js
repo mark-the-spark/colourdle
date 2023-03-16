@@ -19616,8 +19616,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       allowInput: true,
       message: "",
       modals: {
-        successActive: true,
-        helpActive: false,
+        successActive: false,
+        helpActive: true,
         failedActive: false,
         statsActive: false
       },
