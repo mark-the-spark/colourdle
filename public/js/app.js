@@ -19634,7 +19634,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
           r4: 0,
           r5: 0,
           r6: 0
-        }
+        },
+        percentileRank: 0
       },
       dailyCorrectPercentage: 0,
       dailyAverageAttempts: 0,
@@ -19660,7 +19661,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
     this.wordOfTheDay = (0,_src_words_js__WEBPACK_IMPORTED_MODULE_2__.getWordOfTheDay)();
     this.retrieve();
-    this.fetchAverageAttempts();
+    this.fetchRemoteStats();
     window.addEventListener("keydown", function (e) {
       _this.keyWasPressed(e.key);
     });
@@ -19903,16 +19904,19 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
         console.error("Error saving the result:", error);
       });
     },
-    fetchAverageAttempts: function fetchAverageAttempts() {
+    fetchRemoteStats: function fetchRemoteStats() {
       var _this5 = this;
 
-      axios.get("/api/attempts/average").then(function (response) {
+      var browserId = this.getBrowserId();
+      axios.get("/api/stats/" + browserId).then(function (response) {
         _this5.dailyCorrectPercentage = response.data.correctPercentage;
         _this5.dailyAverageAttempts = response.data.averageAttempts;
         _this5.dailyDistribution = response.data.distribution;
+        _this5.stats.percentileRank = response.data.percentileRank;
       })["catch"](function (error) {
-        console.error("Error fetching the average attempts:", error);
+        console.error("Error fetching the remote stats:", error);
       });
+      console.log(this.stats.percentileRank);
     }
   }
 });

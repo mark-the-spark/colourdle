@@ -35,6 +35,7 @@ var app = createApp({
                     r5: 0,
                     r6: 0,
                 },
+                percentileRank: 0
             },
 
             dailyCorrectPercentage: 0,
@@ -62,7 +63,7 @@ var app = createApp({
         this.wordOfTheDay = getWordOfTheDay();
 
         this.retrieve();
-        this.fetchAverageAttempts();
+        this.fetchRemoteStats();
 
         window.addEventListener("keydown", (e) => {
             this.keyWasPressed(e.key);
@@ -354,7 +355,7 @@ var app = createApp({
                 .join(",");
 
             axios
-                .post("/api/attempts", {
+                .post("/api/attempts" , {
                     browser_id: browserId,
                     guess: guess,
                     is_correct: isCorrect,
@@ -368,20 +369,25 @@ var app = createApp({
                 });
         },
 
-        fetchAverageAttempts() {
+        fetchRemoteStats() {
+
+            const browserId = this.getBrowserId();
             axios
-                .get("/api/attempts/average")
+                .get("/api/stats/" + browserId)
                 .then((response) => {
                     this.dailyCorrectPercentage = response.data.correctPercentage;
                     this.dailyAverageAttempts = response.data.averageAttempts;
                     this.dailyDistribution = response.data.distribution;
+                    this.stats.percentileRank = response.data.percentileRank
                 })
                 .catch((error) => {
                     console.error(
-                        "Error fetching the average attempts:",
+                        "Error fetching the remote stats:",
                         error
                     );
                 });
+
+            console.log(this.stats.percentileRank)
         },
     },
 });

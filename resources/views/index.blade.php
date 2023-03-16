@@ -211,6 +211,9 @@
         <game-modal class="hidden" :active="modals.statsActive" @closed="modals.statsActive = false">
             <div class="box">
                 <h2 class="has-text-centered">Statistics</h2>
+                {{-- <div class="bg-gray-200 rounded-lg p-3">
+                    You have more correct guesses than <span class='font-bold'>@{{ stats.percentileRank }}%</span> of Colourdlers!
+                </div> --}}
                 <div class="is-flex is-justify-content-space-around">
                     <div class="has-text-centered stat-item">
                         <h3>Played</h3>
@@ -228,6 +231,7 @@
                         <h3>Max Streak</h3>
                         <h4>@{{ stats.maxStreak }}</h4>
                     </div>
+
                 </div>
                 <h3 class="has-text-centered has-text-weight-bold mt-3">Guess Distribution</h3>
                 <div class="is-flex is-justify-content-space-around">

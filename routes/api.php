@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AttemptController;
+use App\Http\Controllers\AttemptsController;
+use App\Http\Controllers\StatsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/attempts', [AttemptController::class, 'store']);
-Route::get('/attempts/average', [AttemptController::class, 'getAverageAttemptsToday']);
+Route::post('/attempts', [AttemptsController::class, 'store']);
+Route::get('/stats/{browserId}', [StatsController::class, 'get']);
