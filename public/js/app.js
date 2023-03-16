@@ -19597,9 +19597,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_words_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/words.js */ "./resources/js/src/words.js");
 /* harmony import */ var _components_KeyButton_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/KeyButton.vue */ "./resources/js/components/KeyButton.vue");
 /* harmony import */ var _components_GameModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/GameModal */ "./resources/js/components/GameModal.vue");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -19612,10 +19614,10 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       guesses: [[], [], [], [], [], []],
       currentRow: 0,
       allowInput: true,
-      message: '',
+      message: "",
       modals: {
-        successActive: false,
-        helpActive: true,
+        successActive: true,
+        helpActive: false,
         failedActive: false,
         statsActive: false
       },
@@ -19634,6 +19636,16 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
           r6: 0
         }
       },
+      dailyCorrectPercentage: 0,
+      dailyAverageAttempts: 0,
+      dailyDistribution: {
+        r1: 0,
+        r2: 0,
+        r3: 0,
+        r4: 0,
+        r5: 0,
+        r6: 0
+      },
       wiggleRow: null,
       wordOfTheDay: null
     };
@@ -19648,6 +19660,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
     this.wordOfTheDay = (0,_src_words_js__WEBPACK_IMPORTED_MODULE_2__.getWordOfTheDay)();
     this.retrieve();
+    this.fetchAverageAttempts();
     window.addEventListener("keydown", function (e) {
       _this.keyWasPressed(e.key);
     });
@@ -19661,11 +19674,11 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
         this.addTile(key);
       }
 
-      if (key === 'Backspace') {
+      if (key === "Backspace") {
         this.removeTile();
       }
 
-      if (key === 'Enter') {
+      if (key === "Enter") {
         this.tryGuess();
       }
     },
@@ -19680,37 +19693,37 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       this.guesses[this.currentRow].pop();
     },
     shareResult: function shareResult() {
-      console.log('share button clicked');
+      console.log("share button clicked");
       var text = this.getResultText();
 
       if (navigator.share) {
         navigator.share({
-          title: 'Here\'s my Colourdle result!',
-          url: 'https://colourdle.com',
+          title: "Here's my Colourdle result!",
+          url: "https://colourdle.com",
           text: text
         }).then(function () {
-          console.log('Thanks for sharing!');
+          console.log("Thanks for sharing!");
         })["catch"](console.error);
       } else {
-        console.log('sharing not supported');
+        console.log("sharing not supported");
       }
     },
     getResultText: function getResultText() {
       console.log("Getting result text");
-      var text = 'Not to brag, but I completed today\'s Colourdle in ' + this.currentRow + '/6 attempts. \n\n';
+      var text = "Not to brag, but I completed today's Colourdle in " + this.currentRow + "/6 attempts. \n\n";
       var rows = this.guesses.map(function (row) {
         return row.map(function (item) {
-          if (item.status == 'distance-0') return '🟩';
-          if (item.status == 'distance-1' || item.status == 'distance-2') return '🟨';
-          if (item.status == 'distance-3' || item.status == 'distance-4') return '🟧';
-          if (item.status == 'distance-5' || item.status == 'distance-6') return '🟥';
-          if (item.status == 'distance-7' || item.status == 'distance-8') return '🟪';
-          if (item.status == 'distance-9' || item.status == 'distance-10') return '🟦';
-          if (item.status == 'distance-11' || item.status == 'distance-12' || item.status == 'distance-13') return '⬛️';
+          if (item.status == "distance-0") return "🟩";
+          if (item.status == "distance-1" || item.status == "distance-2") return "🟨";
+          if (item.status == "distance-3" || item.status == "distance-4") return "🟧";
+          if (item.status == "distance-5" || item.status == "distance-6") return "🟥";
+          if (item.status == "distance-7" || item.status == "distance-8") return "🟪";
+          if (item.status == "distance-9" || item.status == "distance-10") return "🟦";
+          if (item.status == "distance-11" || item.status == "distance-12" || item.status == "distance-13") return "⬛️";
         });
       });
       rows = rows.map(function (row) {
-        return row.join('') + '\n';
+        return row.join("") + "\n";
       });
       rows.forEach(function (row) {
         text += row;
@@ -19720,34 +19733,34 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     tryGuess: function tryGuess() {
       var _this2 = this;
 
-      console.log('Trying Guess'); // only allow guess if it's a full guess
+      console.log("Trying Guess"); // only allow guess if it's a full guess
 
       if (!this.guessIsComplete()) {
         this.wiggle();
-        this.showMessage(['Not enough letters', 'You\'re short a letter or two', 'Try pressing your keyboard a few more times', 'That\'s not 5 letters y\'know?']);
+        this.showMessage(["Not enough letters", "You're short a letter or two", "Try pressing your keyboard a few more times", "That's not 5 letters y'know?"]);
         return;
       } // only allow guess if it's a word in the dictionary
 
 
       if (!this.inWordList(this.guesses[this.currentRow])) {
         this.wiggle();
-        this.showMessage(['Not a word last time I checked', 'Never heard of it', 'What dictionary are you using?', 'I don\'t think that\'s a word', 'Definitely not a word', 'You\'ve just made that up', 'Doesn\'t sound like a word to me']);
+        this.showMessage(["Not a word last time I checked", "Never heard of it", "What dictionary are you using?", "I don't think that's a word", "Definitely not a word", "You've just made that up", "Doesn't sound like a word to me"]);
         return;
       } // Allowable guess.
 
 
       this.allowInput = false;
-      var correctAnswer = this.wordOfTheDay.split('');
-      console.log('correct answer : ' + correctAnswer); // Check distance away from correct letter for each tile
+      var correctAnswer = this.wordOfTheDay.split("");
+      console.log("correct answer : " + correctAnswer); // Check distance away from correct letter for each tile
 
       this.guesses[this.currentRow].forEach(function (tile, i) {
         var distance = _this2.distanceBetween(_this2.guesses[_this2.currentRow][i].letter, correctAnswer[i]);
 
-        _this2.guesses[_this2.currentRow][i].status = 'distance-' + distance;
+        _this2.guesses[_this2.currentRow][i].status = "distance-" + distance;
         console.log(distance);
       }); // check whether the overall guess is correct
 
-      var guessWord = '';
+      var guessWord = "";
       this.guesses[this.currentRow].forEach(function (letter) {
         guessWord += letter.letter;
       });
@@ -19756,8 +19769,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
       if (guessWord === this.wordOfTheDay) {
         this.modals.successActive = true;
-        this.updateStats('success', this.currentRow);
-        this.store();
+        this.updateStats("success", this.currentRow);
+        this.store(true);
         return;
       } // move to the next line
 
@@ -19767,13 +19780,13 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
         this.store();
       } else {
         this.allowInput = false;
-        this.updateStats('fail');
-        this.store();
+        this.updateStats("fail");
+        this.store(true);
         this.modals.failedActive = true;
       }
     },
     distanceBetween: function distanceBetween(a, b) {
-      var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      var alphabet = "abcdefghijklmnopqrstuvwxyz";
       var distance = Math.abs(alphabet.indexOf(a) - alphabet.indexOf(b));
 
       if (distance > 13) {
@@ -19789,7 +19802,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     inWordList: function inWordList(word) {
       var wordString = word.map(function (letter) {
         return letter.letter;
-      }).join('');
+      }).join("");
       if (_src_words_js__WEBPACK_IMPORTED_MODULE_2__.allWords.includes(wordString)) return true;
       return false;
     },
@@ -19806,7 +19819,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
       var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
 
-      if (_typeof(msg) === 'object') {
+      if (_typeof(msg) === "object") {
         this.message = msg[Math.floor(Math.random() * msg.length)];
       } else {
         this.message = msg;
@@ -19814,50 +19827,96 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
 
       if (time > 0) {
         setTimeout(function () {
-          _this4.message = '';
+          _this4.message = "";
         }, time);
       }
     },
     updateStats: function updateStats(result) {
       var numGuesses = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      console.log('updating stats...');
+      console.log("updating stats...");
       console.log(this.stats);
 
-      if (result == 'success') {
+      if (result == "success") {
         this.stats.played++;
         this.stats.wins++;
         this.stats.currentStreak++;
         this.stats.winPercentage = this.stats.wins / this.stats.played;
         if (this.stats.currentStreak >= this.stats.maxStreak) this.stats.maxStreak = this.stats.currentStreak;
-        this.stats.guessDistribution['r' + numGuesses]++;
+        this.stats.guessDistribution["r" + numGuesses]++;
       } else {
         this.stats.played++;
         this.stats.currentStreak = 0;
       }
     },
     store: function store() {
-      console.log('Storing...');
+      var gameFinished = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      console.log("Storing...");
       var date = new Date();
       var dateString = "".concat(date.getFullYear()).concat(date.getMonth()).concat(date.getDate());
-      localStorage.setItem('currentRow', this.currentRow);
-      localStorage.setItem('guesses', JSON.stringify(this.guesses));
-      localStorage.setItem('attemptDate', dateString);
-      localStorage.setItem('stats', JSON.stringify(this.stats));
+      localStorage.setItem("currentRow", this.currentRow);
+      localStorage.setItem("guesses", JSON.stringify(this.guesses));
+      localStorage.setItem("attemptDate", dateString);
+      localStorage.setItem("stats", JSON.stringify(this.stats));
+
+      if (gameFinished) {
+        this.sendResultToServer();
+      }
     },
     retrieve: function retrieve() {
       var date = new Date();
       var todayDateString = "".concat(date.getFullYear()).concat(date.getMonth()).concat(date.getDate());
 
-      if (localStorage.getItem('attemptDate') == todayDateString) {
-        if (localStorage.getItem('currentRow')) this.currentRow = localStorage.getItem('currentRow');
-        if (localStorage.getItem('guesses')) this.guesses = JSON.parse(localStorage.getItem('guesses'));
+      if (localStorage.getItem("attemptDate") == todayDateString) {
+        if (localStorage.getItem("currentRow")) this.currentRow = localStorage.getItem("currentRow");
+        if (localStorage.getItem("guesses")) this.guesses = JSON.parse(localStorage.getItem("guesses"));
       }
 
-      if (localStorage.getItem('stats')) this.stats = JSON.parse(localStorage.getItem('stats'));
+      if (localStorage.getItem("stats")) this.stats = JSON.parse(localStorage.getItem("stats"));
+    },
+    getBrowserId: function getBrowserId() {
+      var browserId = localStorage.getItem("browserId");
+
+      if (!browserId) {
+        browserId = (0,uuid__WEBPACK_IMPORTED_MODULE_5__["default"])();
+        localStorage.setItem("browserId", browserId);
+      }
+
+      return browserId;
+    },
+    sendResultToServer: function sendResultToServer() {
+      var browserId = this.getBrowserId();
+      var isCorrect = this.modals.successActive;
+      var attemptsCount = this.currentRow;
+      var guess = this.guesses.map(function (row) {
+        return row.map(function (item) {
+          return item.letter;
+        }).join("");
+      }).join(",");
+      axios.post("/api/attempts", {
+        browser_id: browserId,
+        guess: guess,
+        is_correct: isCorrect,
+        attempts: attemptsCount
+      }).then(function (response) {
+        console.log(response.data.message);
+      })["catch"](function (error) {
+        console.error("Error saving the result:", error);
+      });
+    },
+    fetchAverageAttempts: function fetchAverageAttempts() {
+      var _this5 = this;
+
+      axios.get("/api/attempts/average").then(function (response) {
+        _this5.dailyCorrectPercentage = response.data.correctPercentage;
+        _this5.dailyAverageAttempts = response.data.averageAttempts;
+        _this5.dailyDistribution = response.data.distribution;
+      })["catch"](function (error) {
+        console.error("Error fetching the average attempts:", error);
+      });
     }
   }
 });
-app.mount('#root');
+app.mount("#root");
 
 /***/ }),
 
@@ -37763,6 +37822,188 @@ module.exports = function (list, options) {
     lastIdentifiers = newLastIdentifiers;
   };
 };
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/native.js":
+/*!******************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/native.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  randomUUID
+});
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/regex.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/rng.js":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/rng.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ rng)
+/* harmony export */ });
+// Unique ID creation requires a high quality random # generator. In the browser we therefore
+// require the crypto API and do not support built-in fallback to lower quality random number
+// generators (like Math.random()).
+let getRandomValues;
+const rnds8 = new Uint8Array(16);
+function rng() {
+  // lazy load so that environments that need to polyfill have a chance to do so
+  if (!getRandomValues) {
+    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
+    getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
+
+    if (!getRandomValues) {
+      throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
+    }
+  }
+
+  return getRandomValues(rnds8);
+}
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "unsafeStringify": () => (/* binding */ unsafeStringify)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+
+const byteToHex = [];
+
+for (let i = 0; i < 256; ++i) {
+  byteToHex.push((i + 0x100).toString(16).slice(1));
+}
+
+function unsafeStringify(arr, offset = 0) {
+  // Note: Be careful editing this code!  It's been tuned for performance
+  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+  return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+}
+
+function stringify(arr, offset = 0) {
+  const uuid = unsafeStringify(arr, offset); // Consistency check for valid UUID.  If this throws, it's likely due to one
+  // of the following:
+  // - One or more input array values don't map to a hex octet (leading to
+  // "undefined" in the uuid)
+  // - Invalid input values for the RFC `version` or `variant` fields
+
+  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Stringified UUID is invalid');
+  }
+
+  return uuid;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stringify);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/v4.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _native_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./native.js */ "./node_modules/uuid/dist/esm-browser/native.js");
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
+
+
+
+
+function v4(options, buf, offset) {
+  if (_native_js__WEBPACK_IMPORTED_MODULE_0__["default"].randomUUID && !buf && !options) {
+    return _native_js__WEBPACK_IMPORTED_MODULE_0__["default"].randomUUID();
+  }
+
+  options = options || {};
+  const rnds = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_1__["default"])(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+
+  rnds[6] = rnds[6] & 0x0f | 0x40;
+  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+
+  if (buf) {
+    offset = offset || 0;
+
+    for (let i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+
+    return buf;
+  }
+
+  return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_2__.unsafeStringify)(rnds);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v4);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/validate.js":
+/*!********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.js */ "./node_modules/uuid/dist/esm-browser/regex.js");
+
+
+function validate(uuid) {
+  return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__["default"].test(uuid);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);
 
 /***/ }),
 

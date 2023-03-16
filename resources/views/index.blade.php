@@ -9,8 +9,8 @@
     <meta name="description" content="Colourdle is a fun and challenging game where you have to guess the word from the colours - try it and see how you compare!">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GZNMWKD28"></script>
     <script>
@@ -80,12 +80,12 @@
                     <div>Warmer</div>
                     <div>Correct!</div>
                 </div>
-                <tile-row :guess="guesses[0]" :class="wiggleRow == 0 ? 'wiggle' : '' "></tile-row>
-                <tile-row :guess="guesses[1]" :class="wiggleRow == 1 ? 'wiggle' : '' "></tile-row>
-                <tile-row :guess="guesses[2]" :class="wiggleRow == 2 ? 'wiggle' : '' "></tile-row>
-                <tile-row :guess="guesses[3]" :class="wiggleRow == 3 ? 'wiggle' : '' "></tile-row>
-                <tile-row :guess="guesses[4]" :class="wiggleRow == 4 ? 'wiggle' : '' "></tile-row>
-                <tile-row :guess="guesses[5]" :class="wiggleRow == 5 ? 'wiggle' : '' "></tile-row>
+                <tile-row :guess="guesses[0]" :class="wiggleRow == 0 ? 'wiggle' : ''"></tile-row>
+                <tile-row :guess="guesses[1]" :class="wiggleRow == 1 ? 'wiggle' : ''"></tile-row>
+                <tile-row :guess="guesses[2]" :class="wiggleRow == 2 ? 'wiggle' : ''"></tile-row>
+                <tile-row :guess="guesses[3]" :class="wiggleRow == 3 ? 'wiggle' : ''"></tile-row>
+                <tile-row :guess="guesses[4]" :class="wiggleRow == 4 ? 'wiggle' : ''"></tile-row>
+                <tile-row :guess="guesses[5]" :class="wiggleRow == 5 ? 'wiggle' : ''"></tile-row>
             </div>
             <div class="keyboard">
                 <div class="keyboard-row">
@@ -140,17 +140,35 @@
         </div>
 
         <game-modal class="hidden" :active="modals.successActive" @closed="modals.successActive = false">
-            <div class="box">
-                <h2 class="has-text-centered">Well done!</h2>
-                <p class='mb-3'>The correct answer was indeed <span
-                        class="has-font-weight-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
-                <div class="has-text-centered">
-                <p class="mb-3">Fancy bragging about how smart you are? Then share your result!</p>
-                    <button class="button is-success" @click="shareResult">
+            <div class="px-4 py-5 bg-white flex flex-col items-center rounded-lg">
+                <h2 class=" uppercase">Well done!</h2>
+                <p class='mb-4'>The correct answer was indeed <span
+                        class="font-bold uppercase text-green-500">@{{ wordOfTheDay }} </span></p>
+
+
+                <div class="mb-2 border-t border-gray-200 w-full pt-3">
+                    <p class="text-center font-bold">How everyone else did today</p>
+                </div>
+
+                <div class="grid gap-4 grid-cols-2 mb-5">
+                    <div class=" bg-gray-200 rounded p-3 flex flex-col items-center">
+                        <p class="text-xs font-bold text-center">Percent Correct</p>
+                        <p>@{{ dailyCorrectPercentage }}%</p>
+                    </div>
+                    <div class=" bg-gray-200 rounded p-3 flex flex-col items-center">
+                        <p class="text-xs font-bold text-center">Average attempts</p>
+                        <p>@{{ dailyAverageAttempts }}</p>
+                    </div>
+
+                </div>
+
+                <div class="has-text-centered border-t border-gray-200 pt-3">
+                    <p class="text-small mb-3">Fancy bragging about how smart you are?</p>
+                    <button class="rounded-full bg-green-500 text-white px-5 py-2" @click="shareResult">
                         <span class="icon is-small">
                             <i class="fa-solid fa-share"></i>
                         </span>
-                        <span>Share My Result</span>
+                        <span> Share</span>
                     </button>
                 </div>
             </div>
@@ -162,7 +180,7 @@
                 <p class="quote-name pb-2 has-text-centered">- The NY Times</p>
                 <p class="mb-2">Guess the word by using colours. The colour of each tile tells you how close
                     to the correct letter you are.</p>
-                <h3 class="has-text-weight-bold">Examples</h3>
+                <h3 class="font-bold">Examples</h3>
                 <div class="is-flex is-align-items-center mb-2">
                     <div class="tile tile-small tile-inline distance-12"><span>A</span></div>
                     <p class="ml-2"> ...the wrong side of the alphabet</p>
@@ -175,7 +193,7 @@
                     <div class="tile tile-small tile-inline distance-0"><span>C</span></div>
                     <p class="ml-2"> ...correct!</p>
                 </div>
-                <p class="mb-2">Sound easy? There is a twist. <span class="has-text-weight-bold">In Colourdle,
+                <p class="mb-2">Sound easy? There is a twist. <span class="font-bold">In Colourdle,
                         "a" is as close to "z" as it is to "b".</span>&#129327;</p>
                 <p>Good luck! </p>
 
@@ -185,7 +203,7 @@
             <div class="box">
                 <h2 class="has-text-centered">Oh no!</h2>
                 <p class='mb-3'>The correct answer was <span
-                        class="has-font-weight-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
+                        class="font-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
                 <p>Better luck tomorrow!</p>
             </div>
         </game-modal>

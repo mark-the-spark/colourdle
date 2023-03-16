@@ -22206,6 +22206,18 @@ button {
   color: white;
 }
 
+.tile-flip-enter-active,
+.tile-flip-leave-active {
+  transition: transform 0.6s;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.tile-flip-enter,
+.tile-flip-leave-to {
+  transform: rotateY(180deg);
+}
+
 .color-key {
   display: flex;
   justify-content: center;
