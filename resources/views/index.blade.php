@@ -163,8 +163,11 @@
                 </div>
 
                 <div class="has-text-centered border-t border-gray-200 pt-3">
-                    <p class="text-small mb-3">Fancy bragging about how smart you are?</p>
-                    <button class="rounded-full bg-green-500 text-white px-5 py-2" @click="shareResult">
+                    <p class="text-small mb-1 italic">With victory shining, success in your grasp,</p>
+                    <p class="text-small mb-1 italic">A triumphant moment, let's make it last.</p>
+                    <p class="text-small mb-1 italic">Share your glory, spread the cheer,</p>
+                    <p class="text-small mb-1 italic">Click the button, bring friends near.</p>
+                    <button class="rounded-full bg-green-500 text-white px-5 py-2 mt-3" @click="shareResult">
                         <span class="icon is-small">
                             <i class="fa-solid fa-share"></i>
                         </span>
@@ -201,10 +204,39 @@
         </game-modal>
         <game-modal class="hidden" :active="modals.failedActive" @closed="modals.failedActive = false">
             <div class="box">
-                <h2 class="has-text-centered">Oh no!</h2>
+                <h2 class="has-text-centered uppercase font-bold">Oh no!</h2>
                 <p class='mb-3'>The correct answer was <span
-                        class="font-bold is-uppercase">@{{ wordOfTheDay }}</span></p>
+                        class="font-bold uppercase text-green-500">@{{ wordOfTheDay }}</span></p>
                 <p>Better luck tomorrow!</p>
+                <div class="mb-2 border-t border-gray-200 w-full pt-3 mt-3">
+                    <p class="text-center font-bold">How everyone else did today</p>
+                </div>
+
+                <div class="grid gap-4 grid-cols-2 mb-5">
+                    <div class=" bg-gray-200 rounded p-3 flex flex-col items-center">
+                        <p class="text-xs font-bold text-center">Percent Correct</p>
+                        <p>@{{ dailyCorrectPercentage }}%</p>
+                    </div>
+                    <div class=" bg-gray-200 rounded p-3 flex flex-col items-center">
+                        <p class="text-xs font-bold text-center">Average attempts</p>
+                        <p>@{{ dailyAverageAttempts }}</p>
+                    </div>
+
+
+                </div>
+                <div class="has-text-centered border-t border-gray-200 pt-3">
+                    <p class="text-small mb-1 italic">Though you stumbled and lost the game</p>
+                    <p class="text-small mb-1 italic">Sharing moments, there's no shame.</p>
+                    <p class="text-small mb-1 italic">Click the share, let your friends see,</p>
+                    <p class="text-small mb-1 italic">In this failure, camaraderie.</p>
+
+                    <button class="rounded-full bg-green-500 text-white px-5 py-2 mt-3" @click="shareResult">
+                        <span class="icon is-small">
+                            <i class="fa-solid fa-share"></i>
+                        </span>
+                        <span> Share</span>
+                    </button>
+                </div>
             </div>
         </game-modal>
 

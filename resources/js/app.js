@@ -15,8 +15,8 @@ var app = createApp({
             allowInput: true,
             message: "",
             modals: {
-                successActive: false,
-                helpActive: true,
+                successActive: true,
+                helpActive: false,
                 failedActive: false,
                 statsActive: false,
             },
