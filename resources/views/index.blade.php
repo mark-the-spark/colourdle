@@ -243,28 +243,31 @@
         <game-modal class="hidden" :active="modals.statsActive" @closed="modals.statsActive = false">
             <div class="box">
                 <h2 class="has-text-centered">Statistics</h2>
-                {{-- <div class="bg-gray-200 rounded-lg p-3">
-                    You have more correct guesses than <span class='font-bold'>@{{ stats.percentileRank }}%</span> of Colourdlers!
-                </div> --}}
-                <div class="is-flex is-justify-content-space-around">
-                    <div class="has-text-centered stat-item">
-                        <h3>Played</h3>
-                        <h4>@{{ stats.played }}</h4>
+                <div class=" text-center mb-3">
+                    <p>Your wins put you in the top <span class='font-bold text-green-500'>@{{ stats.percentileRank }}%</span> of Colourdlers!</p>
+                    <p>Give yourself a pat on the back.</p>
+                </div>
+                <hr class="h-px bg-gray-200 mb-3">
+                <div class="grid grid-cols-4 gap-4 mb-4">
+                    <div class="text-center">
+                        <h4 class="text-2xl mb-1">@{{ stats.played }}</h4>
+                        <h3 class="font-bold uppercase text-xs">Played</h3>
                     </div>
-                    <div class="has-text-centered stat-item">
-                        <h3>Win %</h3>
-                        <h4>@{{ stats.winPercentage * 100 }}%</h4>
+                    <div class="text-center">
+                        <h4 class="text-2xl mb-1">@{{ stats.winPercentage * 100 }}%</h4>
+                        <h3 class="font-bold uppercase text-xs">Win %</h3>
                     </div>
-                    <div class="has-text-centered stat-item">
-                        <h3>Current Streak</h3>
-                        <h4>@{{ stats.currentStreak }}</h4>
+                    <div class="text-center">
+                        <h4 class="text-2xl mb-1">@{{ stats.currentStreak }}</h4>
+                        <h3 class="font-bold uppercase text-xs"> Streak</h3>
                     </div>
-                    <div class="has-text-centered stat-item">
-                        <h3>Max Streak</h3>
-                        <h4>@{{ stats.maxStreak }}</h4>
+                    <div class="text-center">
+                        <h4 class="text-2xl mb-1">@{{ stats.maxStreak }}</h4>
+                        <h3 class="font-bold uppercase text-xs">Max Streak</h3>
                     </div>
 
                 </div>
+                <hr class="h-px bg-gray-200 mb-3">
                 <h3 class="has-text-centered has-text-weight-bold mt-3">Guess Distribution</h3>
                 <div class="is-flex is-justify-content-space-around">
                     <div class="has-text-centered stat-item">

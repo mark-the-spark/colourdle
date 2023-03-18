@@ -14,11 +14,11 @@ class StatsController extends Controller
     {
         $today = date('Y-m-d');
 
-        $allAttempts = Attempt::whereDate('created_at', $today)->get();
+        $allAttemptsToday = Attempt::whereDate('created_at', $today)->get();
 
-        $correctPercentage =  round($allAttempts->where('is_correct', true)->count() / $allAttempts->count() * 100, 0);
-
-
+        $correctPercentageToday = $allAttemptsToday->count() !== 0
+            ? round($allAttemptsToday->where('is_correct', true)->count() / $allAttemptsToday->count() * 100, 0)
+            : 0;
 
         $averageAttempts = round(DB::table('attempts')
             ->whereDate('created_at', $today)
@@ -47,11 +47,11 @@ class StatsController extends Controller
             ->having('correct_attempts', '<', $currentPersonCorrectAttempts)
             ->count();
 
-        $percentileRank = (($usersWithFewerCorrectAttempts +1) / $totalUsers) * 100;
+        $percentileRank = round((($usersWithFewerCorrectAttempts + 1) / $totalUsers) * 100, 0);
 
 
         return response()->json([
-            'correctPercentage' => $correctPercentage,
+            'correctPercentage' => $correctPercentageToday,
             'averageAttempts' => $averageAttempts,
             'distribution' => $distribution,
             'percentileRank' => $percentileRank

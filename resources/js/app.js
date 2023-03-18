@@ -15,10 +15,10 @@ var app = createApp({
             allowInput: true,
             message: "",
             modals: {
-                helpActive: true,
+                helpActive: false,
                 successActive: false,
                 failedActive: false,
-                statsActive: false,
+                statsActive: true,
             },
 
             stats: {

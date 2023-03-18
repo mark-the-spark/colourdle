@@ -19616,10 +19616,10 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
       allowInput: true,
       message: "",
       modals: {
-        helpActive: true,
+        helpActive: false,
         successActive: false,
         failedActive: false,
-        statsActive: false
+        statsActive: true
       },
       stats: {
         played: 0,
